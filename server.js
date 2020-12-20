@@ -17,28 +17,8 @@ const mysqldb=knex({
 const app =express();
 app.use(bodyparser.json());
 app.use(cors());
-const database ={
-  user:[{
-  	id:'123',
-  	name:'harsh',
-  	email:'harshcode@gmail.com',
-  	password:'cookies',
-  	entries:0,
-  	joined:new Date()
-  },
-  {
-  		id:'124',
-  	name:'harshit',
-  	email:'harshit456@gmail.com',
-  	password:'India@1011',
-  	entries:0,
-  	joined:new Date()
-  }
-]
-}
-
 app.get('/',(req,res)=>{
-     res.send(database.user);
+     res.send('it is working ');
 });
 app.post('/signin',(req,res)=>{
 mysqldb.select('email','hash').from('login')
@@ -121,5 +101,5 @@ app.put('/image',(req,res) =>{
 )
 
 app.listen(process.env.port || 3000,()=>{
-	console.log('app is working');
+	console.log(`it is working on port ${process.env.port}`);
 });
